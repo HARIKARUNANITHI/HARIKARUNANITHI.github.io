@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hari K - Software Developer & UI/UX Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7931e;
+            --dark: #1a1a1a;
+            --light: #f4f4f4;
+            --accent: #4ecdc4;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+            margin-top: 80px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .profile-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid var(--primary);
+  margin-bottom: 2rem;
+  box-shadow: 0 0 40px rgba(255, 107, 53, 0.4);
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden; /* Ensures image stays within the circle */
+}
+
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills the circle nicely */
+  border-radius: 50%;
+}
+
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            background: rgba(255, 107, 53, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid var(--primary);
+            font-weight: 600;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .about-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-card p {
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            width: calc(50% - 2rem);
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: auto;
+            padding-left: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-right: 3rem;
+            text-align: right;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 0;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            left: -10px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            right: -10px;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(78, 205, 196, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 0 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .project-header h3 {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-body p {
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 2px solid var(--primary);
+            margin-top: 2rem;
+        }
+
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 2px solid var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .experience-timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::before {
+                left: 10px !important;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in-up">
+            <div class="profile-img">
+                <img src="PHOTO.jpg" alt="HK">
+            </div>
+            <h1>HARI K</h1>
+            <h2>Software Developer & UI/UX Designer</h2>
+            <p>Passionate about creating innovative solutions through software development, UI/UX design, and data engineering. Specialized in AI/ML with a strong foundation in artificial intelligence and data science.</p>
+            <div class="hero-tags">
+                <span class="tag">Java</span>
+                <span class="tag">Python</span>
+                <span class="tag">SQL</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Figma</span>
+                <span class="tag">Data Engineering</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🎓 Education</h3>
+                    <p><strong>B.Tech in Artificial Intelligence and Data Science</strong></p>
+                    <p>St. Joseph's College of Engineering</p>
+                    <p>Building a strong foundation in AI, machine learning, and data science technologies.</p>
+                </div>
+                <div class="about-card">
+                    <h3>💻 Technical Expertise</h3>
+                    <p>Proficient in Java, Python, and SQL for backend development and data processing. Skilled in UI/UX design using Figma, creating intuitive and visually appealing interfaces.</p>
+                </div>
+                <div class="about-card">
+                    <h3>🚀 My Journey</h3>
+                    <p>Started with a passion for technology and design, evolved into a versatile developer. Gained hands-on experience through multiple internships, hackathons, and real-world projects in AI/ML and data engineering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>BIG-SI-BUCKS</h3>
+                    <h4>AIML Intern</h4>
+                    <p>Developed a comprehensive churn prediction model to identify customers at risk of leaving. Implemented machine learning algorithms to analyze customer behavior patterns and predict churn likelihood, helping businesses make data-driven retention decisions.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>NSIC</h3>
+                    <h4>AIML Intern</h4>
+                    <p>Worked on cutting-edge AI/ML projects, applying advanced algorithms and techniques to solve complex problems. Collaborated with experienced professionals to develop innovative solutions using artificial intelligence and machine learning technologies.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Brainwave Matrix Solutions</h3>
+                    <h4>Intern</h4>
+                    <p>Conducted comprehensive data analysis on supermarket sales datasets. Performed data cleaning, visualization, and statistical analysis to uncover insights and trends. Created actionable recommendations based on data-driven findings.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Workshops & Certifications</h3>
+                    <h4>Continuous Learning</h4>
+                    <p>Completed Microsoft Data Science Workshop, Brainovision Workshop, and Introduction to R certification. Continuously expanding knowledge in data science, machine learning, and emerging technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">☕</div>
+                <h3>Java</h3>
+                <p>Object-oriented programming, backend development, and application design</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <h3>Python</h3>
+                <p>Data analysis, machine learning, automation, and scripting</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🗃️</div>
+                <h3>SQL</h3>
+                <p>Database design, query optimization, and data management</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3>UI/UX Design</h3>
+                <p>User research, wireframing, prototyping, and interface design</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3>Figma</h3>
+                <p>Design systems, mockups, and collaborative design workflows</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <h3>Data Engineering</h3>
+                <p>ETL processes, data pipelines, and data warehouse solutions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2 class="section-title">Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🥈</div>
+                <h3>National AI Hackathon</h3>
+                <p><strong>2nd Place</strong></p>
+                <p>Secured second position in a national-level AI hackathon, competing against top talents from across the country. Developed an innovative AI solution that impressed judges with its creativity and technical execution.</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">🏆</div>
+                <h3>Intra-college Ideathon</h3>
+                <p><strong>1st Place</strong></p>
+                <p>Won first place in the college ideathon by presenting a groundbreaking concept that addressed real-world challenges. Demonstrated exceptional problem-solving skills and innovative thinking.</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">📜</div>
+                <h3>Certifications</h3>
+                <p><strong>Industry Recognition</strong></p>
+                <p>Earned certifications from Microsoft Data Science Workshop, Brainovision, and completed Introduction to R course. Committed to continuous learning and professional development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Churn Prediction System</h3>
+                </div>
+                <div class="project-body">
+                    <p>Developed during my internship at BIG-SI-BUCKS, this project uses machine learning algorithms to predict customer churn. The system analyzes historical customer data to identify patterns and provides actionable insights for customer retention strategies.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>AI/ML Solutions</h3>
+                </div>
+                <div class="project-body">
+                    <p>Created innovative AI/ML solutions during my NSIC internship, focusing on real-world applications of artificial intelligence. Implemented algorithms for pattern recognition, predictive modeling, and intelligent automation.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Supermarket Sales Analysis</h3>
+                </div>
+                <div class="project-body">
+                    <p>Comprehensive data analysis project for Brainwave Matrix Solutions. Analyzed large-scale sales data to identify trends, seasonal patterns, and customer preferences. Delivered insights through interactive visualizations and detailed reports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">I'm always interested in hearing about new opportunities, collaborations, or just connecting with fellow tech enthusiasts. Feel free to reach out!</p>
+            <div class="contact-info">
+                <h3>📧 Email Me</h3>
+                <a href="mailto:harikarunanithi21@gmail.com">harikarunanithi21@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Hari K. All rights reserved. | Software Developer & UI/UX Designer</p>
+    </footer>
+</body>
+</html>
